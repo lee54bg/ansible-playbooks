@@ -1,0 +1,13 @@
+[workers]
+10.8.150.23
+10.8.150.24
+10.8.150.25
+10.8.150.26
+10.8.150.12
+
+[master]
+127.0.0.1 ansible_connection=local
+
+[all:vars]
+ansible_connection=ssh
+ansible_become_pass='aristo'
