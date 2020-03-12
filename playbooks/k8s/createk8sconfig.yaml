@@ -1,0 +1,26 @@
+- hosts: masters
+  gather_facts: no
+  tasks:
+    - name: Ansible check directory.
+      stat:
+        path: /root/.kube/config
+      register: my_folder
+   
+    # - name: "Creating k8s config"
+    #   debug:
+    #     msg: "The k8s config exists.  Overwriting..."
+    #   when: my_folder.stat.exists
+   
+    - name: "Ansible Create directory if not exists"
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        remote_src: yes
+      # when: my_folder.stat.exists == false
+
+    - name: chown to username you login and chmod as required
+      file:
+        path: $HOME/.kube/config
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+      # when: my_folder.stat.exists == false

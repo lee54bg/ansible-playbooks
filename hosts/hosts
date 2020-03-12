@@ -1,13 +1,16 @@
-[workers]
-10.8.150.23
-10.8.150.24
-10.8.150.25
-10.8.150.26
-10.8.150.12
+[masters]
+10.8.150.21
+10.8.150.22
+10.8.150.13
 
-[master]
-127.0.0.1 ansible_connection=local
+[workers]
+10.8.150.29 
+10.8.150.30
+10.8.150.28
 
 [all:vars]
 ansible_connection=ssh
-ansible_become_pass='aristo'
+ansible_user=root
+ansible_ssh_user=root
+ansible_ssh_pass=aristo
+# ansible_become_pass='aristo'

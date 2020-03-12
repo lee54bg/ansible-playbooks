@@ -1,0 +1,14 @@
+- hosts: all
+
+  tasks:
+    - name: Reset Kubernetes component
+      shell: "kubeadm reset --force"
+      ignore_errors: True
+
+- hosts: masters
+  tasks:
+    - name: Deleting k8s config file
+      file:
+        path: /root/.kube/config
+        # If the file doesn't exist, then don't take any action
+        state: absent
